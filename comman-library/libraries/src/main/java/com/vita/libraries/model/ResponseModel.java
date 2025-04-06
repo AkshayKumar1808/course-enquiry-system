@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ResponseModel<T> {
+public class ResponseModel {
 	
 	private Object obj;
 	
