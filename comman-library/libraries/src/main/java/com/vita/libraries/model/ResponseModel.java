@@ -6,32 +6,18 @@ public class ResponseModel {
 		return obj;
 	}
 
-	public void setObj(Object obj) {
-		this.obj = obj;
-	}
-
 	public int getExceptionCode() {
 		return exceptionCode;
 	}
 
-	public void setExceptionCode(int exceptionCode) {
-		this.exceptionCode = exceptionCode;
-	}
 
 	public String getExceptionDescription() {
 		return exceptionDescription;
 	}
 
-	public void setExceptionDescription(String exceptionDescription) {
-		this.exceptionDescription = exceptionDescription;
-	}
 
 	public String getMessage() {
 		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
 	}
 
 	private ResponseModel(Builder builder) {
@@ -41,13 +27,18 @@ public class ResponseModel {
 		this.message = builder.message;
 	}
 
-	private Object obj;
+	private final Object obj;
 
-	private int exceptionCode;
+	private final int exceptionCode;
 
-	private String exceptionDescription;
+	private final String exceptionDescription;
 
-	private String message;
+	private final String message;
+	
+	//create the static factory method 
+	public static Builder Builder() {
+		return new Builder();
+	}
 
 	public static class Builder {
 
