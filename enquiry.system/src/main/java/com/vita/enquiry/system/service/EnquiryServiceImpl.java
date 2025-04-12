@@ -1,10 +1,12 @@
 package com.vita.enquiry.system.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vita.enquiry.system.dto.EnquiryPayload;
 import com.vita.enquiry.system.repository.EnquiryRepository;
 import com.vita.libraries.model.Enquiry;
 import com.vita.libraries.model.ResponseModel;
@@ -25,6 +27,19 @@ public class EnquiryServiceImpl implements EnquiryService {
 		}
 		return ResponseModel.Builder().setObj(null).setExceptionCode(304)
 				.setExceptionDescription("Their is no any enquiry is present").build();
+	}
+
+	@Override
+	public ResponseModel addEnquiry(EnquiryPayload enquiryPayload) {
+		Enquiry inquiry=new Enquiry();
+		inquiry.setName(enquiryPayload.getName());
+		inquiry.setEmail(enquiryPayload.getEmail());
+		inquiry.setCourse(enquiryPayload.getCourse());
+		inquiry.setMessage(enquiryPayload.getMessage());
+		inquiry.setCreatedDate(LocalDateTime.now());
+		Enquiry enquiry = enquiryRepository.save(inquiry);
+		return ResponseModel.Builder().setObj(enquiry).setMessage("successfully saved the enquiry").build();
+
 	}
 
 }
